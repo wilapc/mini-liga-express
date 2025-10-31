@@ -56,7 +56,7 @@ class GameController extends Controller
 
         $game->update($validated);
 
-        (new CalculateTeamScore($validated))->execute();
+        (new CalculateTeamScore($game))->execute();
 
         return response()->json('success', 'Resultados Actualizados');
     }

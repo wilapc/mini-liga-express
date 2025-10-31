@@ -9,6 +9,6 @@ class StandingsController extends Controller
 {
     public function index()
     {
-        
+           
     }
 }

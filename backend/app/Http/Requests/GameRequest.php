@@ -22,8 +22,6 @@ class GameRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'home_team_id' => ['required', 'integer', 'exists:teams,id'],
-            'away_team_id' => ['required', 'integer', 'different:home_team_id', 'exists:teams,id'],
             'home_score'   => ['required', 'integer', 'min:0'],
             'away_score'   => ['required', 'integer', 'min:0'],
         ];
