@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { Teams } from '../models/teams.interface';
+import { Standings } from '../models/standings.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +21,7 @@ export class ApiService {
     return this.http.post(`${this.base}/api/teams`, payload);
   }
 
-  getStandings() {
-    return this.http.get<any[]>(`${this.base}/api/standings`);
+  getStandings(): Observable<Standings[]> {
+    return this.http.get<Standings[]>(`${this.base}/api/standings`);
   }
 }

@@ -1,1 +1,32 @@
-<p>standings works!</p>
+<div>
+  <nav>
+    <a routerLink="/teams">Equipos</a>
+  </nav>
+  <h1>Clasificacion</h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Posicion</th>
+        <th>Equipo</th>
+        <th>Juegos</th>
+        <th>Puntos</th>
+        <th>G.E</th>
+        <th>G.F</th>
+        <th>D.G</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (teamStaning$ | async; as teamStaning) { @for (team of teamStaning; track $index) {
+      <tr>
+        <td>{{ team.position }}</td>
+        <td>{{ team.name }}</td>
+        <td>{{ team.played }}</td>
+        <td>{{ team.points }}</td>
+        <td>{{ team.goals_against }}</td>
+        <td>{{ team.goals_for }}</td>
+        <td>{{ team.goal_diff }}</td>
+      </tr>
+      } }
+    </tbody>
+  </table>
+</div>
