@@ -6,6 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './standings.html',
   styleUrl: './standings.scss',
 })
-export class Standings {
-
-}
+export class StandingsComponent {}
