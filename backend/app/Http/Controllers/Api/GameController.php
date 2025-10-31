@@ -54,6 +54,8 @@ class GameController extends Controller
     {   
         $validated = $request->validated();
 
+        $validated['played_at'] = now();
+
         $game->update($validated);
 
         (new CalculateTeamScore($game))->execute();
