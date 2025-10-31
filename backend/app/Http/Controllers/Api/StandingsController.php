@@ -32,6 +32,7 @@ class StandingsController extends Controller
             'name' => $team->name,
             'played' => $played,
             'points' => $points,
+            'goals_against' => $team->goals_against,
             'goals_for' => $goalsFor,
             'goal_diff' => $goalsFor - $goalsAgainst,
         ];
