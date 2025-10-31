@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GameRequest;
+use App\Models\Game;
+use CalculateTeamScore;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
@@ -45,5 +48,16 @@ class GameController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function result(GameRequest $request ,Game $game)
+    {   
+        $validated = $request->validated();
+
+        $game->update($validated);
+
+        (new CalculateTeamScore($validated))->execute();
+
+        return response()->json('success', 'Resultados Actualizados');
     }
 }
