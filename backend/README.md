@@ -1,6 +1,6 @@
 # MiniLiga Express - Backend API
 
-Backend desarrollado en Laravel 10 para la gestión de equipos, partidos y resultados.
+Backend desarrollado en Laravel 12 para la gestión de equipos, partidos y resultados.
 
 📂 Estructura principal
 ```bash
