@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import {
@@ -31,10 +31,13 @@ import { Observable } from 'rxjs';
     IonSpinner,
   ],
 })
-export class GamesComponent implements OnInit {
+export class GamesComponent {
   private api = inject(ApiService);
   matches$: Observable<any[]> = this.api.getPendingMatches();
+
   constructor() {}
 
-  ngOnInit() {}
+  ionViewWillEnter() {
+    this.matches$ = this.api.getPendingMatches();
+  }
 }

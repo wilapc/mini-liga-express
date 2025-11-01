@@ -7,15 +7,18 @@
 <ion-content class="ion-padding">
   <form [formGroup]="form" (ngSubmit)="submit()">
     <ion-item>
-      <ion-label position="stacked">Home Score</ion-label>
+      <ion-label position="stacked">Local</ion-label>
       <ion-input type="number" formControlName="home_score"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">Away Score</ion-label>
+      <ion-label position="stacked">Visitante</ion-label>
       <ion-input type="number" formControlName="away_score"></ion-input>
     </ion-item>
 
     <ion-button expand="block" type="submit">Submit</ion-button>
   </form>
+  <ion-button expand="block" type="buttom" (click)="back()"
+    >Regresar</ion-button
+  >
 </ion-content>

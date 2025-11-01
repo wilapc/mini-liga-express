@@ -5,6 +5,7 @@ import {
   IonButton,
   IonContent,
   IonHeader,
+  IonInput,
   IonItem,
   IonLabel,
   IonTitle,
@@ -24,8 +25,10 @@ import { ApiService } from 'src/app/services/api.service';
     IonHeader,
     IonToolbar,
     IonTitle,
+    IonInput,
     IonContent,
   ],
+  standalone: true,
 })
 export class ReportResultComponent implements OnInit {
   private api = inject(ApiService);
@@ -39,11 +42,14 @@ export class ReportResultComponent implements OnInit {
     away_score: new FormControl(0, { nonNullable: true }),
   });
 
+  back() {
+    this.router.navigateByUrl('/games');
+  }
+
   submit() {
     this.api.reportResult(this.matchId, this.form.getRawValue()).subscribe({
       next: () => {
-        alert('Result reported successfully!');
-        this.router.navigateByUrl('/matches');
+        this.router.navigateByUrl('/games');
       },
       error: (err) => console.error('Error reporting result', err),
     });

@@ -10,7 +10,10 @@
     @for (match of matches; track match.id) {
     <ion-item [routerLink]="['/report', match.id]">
       <ion-label>
-        <h2>{{ match.home_team.name }} vs {{ match.away_team.name }}</h2>
+        <h2>
+          (Local) {{ match.home_team.name }} vs
+          {{ match.away_team.name }} (Visitante)
+        </h2>
       </ion-label>
     </ion-item>
     }

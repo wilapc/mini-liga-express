@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { GamesComponent } from './feature/games/games.component';
 import { ReportResultComponent } from './feature/report-result/report-result.component';
-import { IonicModule } from '@ionic/angular';
 
 const routes: Routes = [
   {
@@ -12,17 +11,20 @@ const routes: Routes = [
   },
   {
     path: 'games',
-    component: GamesComponent,
+    loadComponent: () =>
+      import('./feature/games/games.component').then((m) => m.GamesComponent),
   },
   {
     path: 'report/:id',
-    component: ReportResultComponent,
+    loadComponent: () =>
+      import('./feature/report-result/report-result.component').then(
+        (m) => m.ReportResultComponent
+      ),
   },
 ];
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
-    IonicModule,
   ],
   exports: [RouterModule],
 })
