@@ -3,16 +3,21 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GameRequest;
+use App\Models\Game;
+use App\Actions\CalculateTeamScore;
 use Illuminate\Http\Request;
 
-class MatchController extends Controller
+class GameController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $games = Game::where('played_at', null)->with(['homeTeam', 'awayTeam'])->get();
+
+        return response()->json($games);
     }
 
     /**
@@ -45,5 +50,18 @@ class MatchController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function result(GameRequest $request ,Game $game)
+    {   
+        $validated = $request->validated();
+
+        $validated['played_at'] = now();
+
+        $game->update($validated);
+
+        (new CalculateTeamScore($game))->execute();
+
+        return response()->json(['success' => 'Creado con Exito!']);
     }
 }

@@ -1,1 +1,19 @@
-<p>teams works!</p>
+<div>
+  <nav>
+    <a routerLink="/standings">Clasificacion</a>
+  </nav>
+  <h1>Teams</h1>
+  @if( teams$ | async; as teams) { @for (item of teams; track $index) {
+  <ul>
+    <li>{{ item.name }}</li>
+  </ul>
+  } } @else {
+  <p>Cargando equipos...</p>
+  }
+  <h2>Crear Equipo</h2>
+  <form class="grid" [formGroup]="teamForm" (ngSubmit)="saveTeamName()">
+    <label for="name">Nombre</label>
+    <input id="name" type="text" formControlName="name" />
+    <button type="submit" [disabled]="!teamForm.valid">Guardar</button>
+  </form>
+</div>

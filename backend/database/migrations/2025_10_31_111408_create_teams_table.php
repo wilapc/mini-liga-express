@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            $table->integer('goals_for')->default(0);
+            $table->integer('goals_against')->default(0);
             $table->timestamps();
         });
     }
