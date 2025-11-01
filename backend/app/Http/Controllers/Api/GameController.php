@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GameRequest;
 use App\Models\Game;
-use CalculateTeamScore;
+use App\Actions\CalculateTeamScore;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
@@ -15,7 +15,9 @@ class GameController extends Controller
      */
     public function index()
     {
-        //
+        $games = Game::where('played_at', null)->with(['homeTeam', 'awayTeam'])->get();
+
+        return response()->json($games);
     }
 
     /**
@@ -60,6 +62,6 @@ class GameController extends Controller
 
         (new CalculateTeamScore($game))->execute();
 
-        return response()->json('success', 'Resultados Actualizados');
+        return response()->json(['success' => 'Creado con Exito!']);
     }
 }
