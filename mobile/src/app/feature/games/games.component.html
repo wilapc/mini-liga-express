@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Partidos Pendientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  @if (matches$ | async; as matches) {
+  <ion-list>
+    @for (match of matches; track match.id) {
+    <ion-item [routerLink]="['/report', match.id]">
+      <ion-label>
+        <h2>
+          (Local) {{ match.home_team.name }} vs
+          {{ match.away_team.name }} (Visitante)
+        </h2>
+      </ion-label>
+    </ion-item>
+    }
+  </ion-list>
+  } @else {
+  <ion-spinner class="center"></ion-spinner>
+  }
+</ion-content>
